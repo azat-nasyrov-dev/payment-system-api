@@ -2,6 +2,7 @@ import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { DataSource, QueryRunner } from 'typeorm';
 import { UserEntity } from './entities/user.entity';
 import { TransactionEntity } from './entities/transaction.entity';
+import { MAX_DEBIT_AMOUNT } from './users.constants';
 
 @Injectable()
 export class UsersService {
@@ -39,8 +40,6 @@ export class UsersService {
     userId: number,
     amount: number,
   ): Promise<{ message: string; newBalance: number }> {
-    const MAX_DEBIT_AMOUNT = 1000;
-
     if (amount <= 0) {
       throw new HttpException('This amount must be greater than 0', HttpStatus.BAD_REQUEST);
     }
