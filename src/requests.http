@@ -1,0 +1,7 @@
+### Debit 100$ from user with id=1
+POST http://localhost:3001/api/users/1/debit
+Content-Type: application/json
+
+{
+  "amount": 100
+}
